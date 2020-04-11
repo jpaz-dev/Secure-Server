@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalicacion HTML5</title>
+</head>
+<body>
+    <h1>Detección de Geolocalicacion</h1>
+    <div id="resultado"></div>
+
+    <script src="/js/jquery/jquery-3.4.1.min.js"></script>
+    <script src="/js/modernizr/modernizr.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            if(Modernizr.geolocation) {
+                //alert("Tu navegador SI soporta el API de geolocalizacion.");
+                const showPosition = position => {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                    $("#resultado").html(`<p>Latitude: ${latitude}</p><br/><p>Longitude: ${longitude}</p>`);
+                }
+
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Tu navegador NO soporta el API de geolocalizacion.");
+            }
+        })
+    </script>
+</body>
+</html>
